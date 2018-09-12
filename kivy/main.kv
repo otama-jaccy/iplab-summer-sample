@@ -1,0 +1,13 @@
+#:kivy 1.8.0
+
+<Main>:
+    TabbedPanel:
+        pos_hint: {'center_x': .5, 'center_y': .5}
+        do_default_tab: False
+        TabbedPanelItem:
+            text: 'camera image'
+            CameraViewWidget:
+        TabbedPanelItem:
+            text: 'hoge'
+            Label:
+                text: 'hogehoge'
