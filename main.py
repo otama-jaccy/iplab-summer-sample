@@ -18,6 +18,9 @@ class MainApp(App):
         return Main()
 
 if __name__ == '__main__':
+    #kivyファイルの読み込み(cssの読み込みみたいなものです)
     Builder.load_file('kivy/main.kv')
     Builder.load_file('kivy/widgets.kv')
+
+    #Applicationの実行
     MainApp().run()
