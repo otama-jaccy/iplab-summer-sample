@@ -13,9 +13,8 @@ choco install python
 
 後は以下の必要なpythonライブラリをインストールしてください．
 ```bash
-pip install opencv-python opencv-contrib-python
+pip install opencv-python opencv-contrib-python kivy
 ```
-後はGUIライブラリのkivyを[ここ](https://kivy.org/#download)からダウンロード．
 
 ## 動作確認
 ### opencvが動くか
