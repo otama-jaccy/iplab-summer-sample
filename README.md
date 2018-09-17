@@ -5,7 +5,10 @@
 ### python
 python3.6以上をインストールしてください．
 
-macの場合は，[これ](https://qiita.com/okhrn/items/935cf187aec5cf144558)を参考に
+macの場合は，[これ](https://qiita.com/okhrn/items/935cf187aec5cf144558)を参考にするか，次のコマンドを実行．
+```bash
+brew install python3
+```
 windows10はpowershellを起動して，
 ```bash
 choco install python
