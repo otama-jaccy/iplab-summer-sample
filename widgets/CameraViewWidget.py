@@ -10,17 +10,19 @@ from kivy.clock import Clock
 from kivy.properties import StringProperty, ObjectProperty
 
 class CameraViewWidget(BoxLayout):
+	#kivyの画像描画用テクスチャ
 	image_texture = ObjectProperty(None)
-	is_saving = False
+	#画像を保存するか
+	_is_saving = False
+	#画像処理モード
+	_state = 0 
+	#カメラ
+	_cap = cv2.VideoCapture(0)
 
 	def __init__(self, **kwargs):
 		super(CameraViewWidget, self).__init__(**kwargs)
 		#スレッドセーフ用
 		self._lock = Lock()
-		#画像処理の種類
-		self._state = 0
-		#カメラの取得
-		self.cap = cv2.VideoCapture(0)
 		#関数の定期実行
 		Clock.schedule_interval(self.capture_image, 1.0/50.0)
 
@@ -55,10 +57,9 @@ class CameraViewWidget(BoxLayout):
 			next_state = self._state
 		
 		# ret:readの成否　frame：取得した画像
-		ret, frame = self.cap.read()
-
+		ret, frame = self._cap.read()
 		# 取得画像の保存
-		if self.is_saving:
+		if self._is_saving:
 			self.save(frame)
 
 		# モードで画像処理を切り替え
@@ -80,15 +81,15 @@ class CameraViewWidget(BoxLayout):
 		disp_img = cv2.flip(disp_img, 0)
 
 		#カメラの解像度取得
-		width = self.cap.get(cv2.CAP_PROP_FRAME_WIDTH)
-		height = self.cap.get(cv2.CAP_PROP_FRAME_HEIGHT)
+		width = self._cap.get(cv2.CAP_PROP_FRAME_WIDTH)
+		height = self._cap.get(cv2.CAP_PROP_FRAME_HEIGHT)
 
 		#描画
 		self.image_texture = Texture.create(size=(width, height))
 		self.image_texture.blit_buffer(disp_img.tostring())
 
-	def on_press_save_button(self, is_saving):
-		self.is_saving = is_saving
+	def on_press_save_button(self, _is_saving):
+		self._is_saving = _is_saving
 
 	#画像処理モードの変換
 	def onChange(self, value):
