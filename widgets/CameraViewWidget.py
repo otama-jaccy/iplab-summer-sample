@@ -20,7 +20,7 @@ class CameraViewWidget(BoxLayout):
 		#画像処理の種類
 		self._state = 0
 		#カメラの取得
-		self.cap = cv2.VideoCapture(1)
+		self.cap = cv2.VideoCapture(0)
 		#関数の定期実行
 		Clock.schedule_interval(self.capture_image, 1.0/50.0)
 
