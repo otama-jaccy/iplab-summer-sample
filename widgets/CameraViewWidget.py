@@ -18,6 +18,8 @@ class CameraViewWidget(BoxLayout):
 	_state = 0 
 	#カメラ
 	_cap = cv2.VideoCapture(0)
+	#カスケードファイルのパス
+	_cascade = cv2.CascadeClassifier("./data/haarcascade_frontalface_default.xml")
 
 	def __init__(self, **kwargs):
 		super(CameraViewWidget, self).__init__(**kwargs)
@@ -44,7 +46,10 @@ class CameraViewWidget(BoxLayout):
 
 	#カスケード分類器による認識
 	def cascade(self, frame):
-		#TODO:実装課題
+		gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+		face = self._cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=3, minSize=(30, 30))
+		for (x, y, w, h) in face:
+			cv2.rectangle(frame, (x, y), (x+w, y+h), (0,0,200), 3)
 		return frame
 
 	#オリジナルの画像認識
