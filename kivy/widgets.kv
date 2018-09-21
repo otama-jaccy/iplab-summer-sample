@@ -1,6 +1,29 @@
 #:kivy 1.8.0
 
 <-CameraViewWidget>:
-    Image:
-        id: camera_view_texture
-        texture: root.image_texture
+    BoxLayout:
+        orientation: 'vertical'
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: .2
+            Button:
+                text: 'filter'
+                on_press: root.onChange(0)
+            Button:
+                text: 'gray'
+                on_press: root.onChange(1)
+            Button:
+                text: 'cascade'
+                on_press: root.onChange(2)
+            Button:
+                text: 'original'
+                on_press: root.onChange(3)
+        Image:
+            size_hint_y: .8
+            id: camera_view_texture
+            texture: root.image_texture
+        Button:
+            text:'save'
+            size_hint_y:.1
+            on_press: root.on_press_save_button(True)
+            on_release: root.on_press_save_button(False)

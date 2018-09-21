@@ -14,7 +14,7 @@ windows10はpowershellを起動して，
 choco install python
 ```
 
-後は以下の必要なpythonライブラリをインストールしてください．
+後は以下の必要なpythonライブラリをインストールしてください．環境によってはpip3とかにしてください．
 ```bash
 pip install opencv-python opencv-contrib-python kivy
 ```
